@@ -8,12 +8,10 @@ GRPC实现，[proto文件](https://github.com/Futuremine-chain/futuremine/blob/m
 * GetAccount
 	- info：获取账户信息
 	- agrs：
-```json
-				[address]
+```json[address]
 ```
-	- result:
-```json
-	{
+    - result:
+```json{
     "address": "xC3LLtxiCaAcG2KrJmzo75pdavgqNLooz1N",//地址
     "nonce": 9,//账户nonce，
     "tokens": [
