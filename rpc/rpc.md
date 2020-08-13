@@ -1,7 +1,9 @@
 # RPC 文档
 
 ## 介绍
-GRPC实现，[proto文件](https://github.com/Futuremine-chain/futuremine/blob/master/futuremine/rpc/rpc.proto)
+GRPC实现
+* go语言调用，使用现有的[Client](https://github.com/Futuremine-chain/futuremine/blob/master/futuremine/rpc/rpcclient.go)
+* 其他语言，使用[proto文件](https://github.com/Futuremine-chain/futuremine/blob/master/futuremine/rpc/rpc.proto)生成rpcclient
 
 ## 目录
 
