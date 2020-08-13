@@ -6,12 +6,12 @@ GRPC实现，[proto文件](https://github.com/Futuremine-chain/futuremine/blob/m
 ## 目录
 
 ### GetAccount
-*info：获取账户信息
-*agrs：address(json bytes)
+- info：获取账户信息
+- agrs：address(json bytes)
 ```
 json[xC2xC5DNc3Uz3jMnufsX9jX8a67mypdfxGH]
 ```
-*result:
+- result:
     
 ```
 json{
