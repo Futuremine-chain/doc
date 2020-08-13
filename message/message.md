@@ -14,6 +14,8 @@ github.com/Futuremine-chain/futuremine/futuremine/common/kit/message
 github.com/Futuremine-chain/futuremine/futuremine/common/kit
 github.com/Futuremine-chain/futuremine/tools/arry
 github.com/Futuremine-chain/futuremine/common/param
+github.com/Futuremine-chain/futuremine/futuremine/rpc/types
+github.com/Futuremine-chain/futuremine/futuremine/rpc
 ```
 
 ### 创建交易
@@ -54,7 +56,17 @@ to := arry.StringToAddress("xC6nGfqHPt4KPoyhwCG3zNemNweYsBWXRR2")
 msg := message.NewVote(from, to, 1000000, 1)
 ```
 
-### 交易签名
+### 消息签名
 ```
 msg.SignMsg(private)
+```
+
+### 发送消息
+
+```
+rpcMsg := types.MsgToRpcMsg(msg)
+jsonBytes, _ := json.Marshal(rpcMsg)
+req := &rpc.Request{Params: jsonBytes}
+ctx, _ := context.WithTimeout(context.TODO(), time.Second*20)
+resp, err := rpcClient.SendMessageRaw(ctx, req)
 ```
