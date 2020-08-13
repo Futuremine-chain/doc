@@ -5,6 +5,18 @@ GRPC实现
 * go语言调用，使用现有的[Client](https://github.com/Futuremine-chain/futuremine/blob/master/futuremine/rpc/rpcclient.go)
 * 其他语言，使用[proto文件](https://github.com/Futuremine-chain/futuremine/blob/master/futuremine/rpc/rpc.proto)生成rpcclient
 
+```
+type customCredential struct {
+	OpenTLS  bool
+	Password string
+}
+
+var opts []grpc.DialOption
+opts = append(opts, grpc.WithPerRPCCredentials(&customCredential{Password: "123", OpenTLS: false}))
+conn, _ = grpc.Dial("127.0.0.1:19161", opts...)
+gc = NewGreeterClient(conn)
+```
+
 ## 目录
 
 ### GetAccount
