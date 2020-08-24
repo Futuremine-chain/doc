@@ -8,7 +8,7 @@
 * Cancel 取消候选
 * Vote 投票
 
-### 通过kit库创建发送消息
+### 一 通过kit库创建发送消息
 ```
 github.com/Futuremine-chain/future/future/common/kit/message
 github.com/Futuremine-chain/future/future/common/kit
@@ -72,7 +72,7 @@ ctx, _ := context.WithTimeout(context.TODO(), time.Second*20)
 resp, err := rpcClient.SendMessageRaw(ctx, req)
 ```
 
-### 通过rpc创建发送消息
+### 二 通过rpc创建发送消息
 
 #### 创建交易
 ```
