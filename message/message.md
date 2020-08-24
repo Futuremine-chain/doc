@@ -1,4 +1,4 @@
-å# Message 文档
+# Message 文档
 
 ## 目录
 ### 类型
