@@ -2,8 +2,8 @@
 
 ## 介绍
 GRPC实现
-* go语言调用，使用现有的[Client](https://github.com/Futuremine-chain/futuremine/blob/master/futuremine/rpc/rpcclient.go)
-* 其他语言，使用[proto文件](https://github.com/Futuremine-chain/futuremine/blob/master/futuremine/rpc/rpc.proto)生成rpcclient
+* go语言调用，使用现有的[Client](https://github.com/Futuremine-chain/future/blob/master/future/rpc/rpcclient.go)
+* 其他语言，使用[proto文件](https://github.com/Futuremine-chain/future/blob/master/future/rpc/rpc.proto)生成rpcclient
 
 ```
 type customCredential struct {
@@ -21,10 +21,7 @@ gc = NewGreeterClient(conn)
 
 ### GetAccount
 - info：获取账户信息
-- agrs：address(json bytes)
-```json
-["xC2xC5DNc3Uz3jMnufsX9jX8a67mypdfxGH"]
-```
+- agrs：address
 - result:
     
 ```json
@@ -48,10 +45,7 @@ gc = NewGreeterClient(conn)
 
 ### GetMessage
 - info：获取消息
-- agrs：msghash(json bytes)
-```json
-["0x0131fe37c33751a1284c4d82c8698cbae3a912464aeddb5d9b54457f27e1da94"]
-```
+- agrs：msghash
 - result:
     
 ```json
@@ -78,10 +72,7 @@ gc = NewGreeterClient(conn)
 
 ### GetBlockHash
 - info：获取block
-- agrs：blockhash(json bytes)
-```json
-["0xcf7e0229a8c89c01ef185d3bd874267540d79cb9c4d6882d1cdadfeab03ec585"]
-```
+- agrs：blockhash
 - result:
     
 ```json
@@ -131,10 +122,7 @@ gc = NewGreeterClient(conn)
 ```
 ### GetBlockHeight
 - info：获取block
-- agrs：blockheight(json bytes)
-```json
-[10]
-```
+- agrs：blockheight
 - result:
     
 ```json
@@ -292,10 +280,7 @@ gc = NewGreeterClient(conn)
 
 ### GetCycleSupers
 - info：获取某周期的超级节点信息
-- agrs：cycle(json bytes)
-```json
-[18487]
-```
+- agrs：cycle
 - result:
 ```json
 {
@@ -360,7 +345,7 @@ gc = NewGreeterClient(conn)
 
 ### Token
 - info：获取token详情
-- agrs：token地址(string bytes)
+- agrs：token地址
 - result:
 ```json
 {
@@ -510,4 +495,286 @@ gc = NewGreeterClient(conn)
     "height": 132729,
     "confirmed": 132722
 }
+```
+
+### GenerateAddress
+- info：创建地址
+- agrs：
+```
+Network:testnet/mainnet
+Publickey:公钥
+```
+- result:
+```
+FMegukTco2m1S9Y4ebXM9kVpQ6jqGGZBwWv
+```
+
+### GenerateTokenAddress
+- info：创建代币地址
+- agrs：
+```
+Network:testnet/mainnet
+Address:发币地址
+Abbr:币名简写
+```
+- result:
+```
+FTgeasx9fmkEiVu69xr56hC9c1QTv4rKM8e
+```
+
+### CreateTransaction
+- info：创建交易
+- agrs：
+```
+From:       转账地址
+To:         接收地址
+Token:      代币地址(主币为"FM")
+Amount:     转账金额*1e8(1e8为小数部分，若转账1个币，则这里的amount为1*1e8=100000000)
+Fees:       手续费(最小允许的手续费为1e4，即1*1e4=10000)
+Timestamp:  时间戳(单位s)
+Nonce:      账户nonce值(每发送一次消息，nonce加1，不可重复)
+```
+- result:
+```json
+{
+	"Header": {
+		"Type": 0,
+		"Hash": "0x78d0aceafd50bb8a10c927c79a0cea04ba0818d134779b1506ea53d7a66fc7aa",
+		"From": "0x464d656a6339626a695465517a4b51473966534450476473527a7a4564455165367365",
+		"Nonce": 3,
+		"Fee": 1000000,
+		"Time": 1598258526,
+		"Signature": {
+			"bytes": null,
+			"pubkey": null
+		}
+	},
+	"Body": {
+		"TokenAddress": "0x000000000000000000000000000000000000000000000000000000000000000000464d",
+		"Receiver": "0x464d6567756b54636f326d31533959346562584d396b567051366a7147475a42775776",
+		"Amount": 1000000000
+	}
+}
+```
+
+### SendTransaction
+- info：发送交易
+- agrs：
+```
+From:       转账地址
+To:         接收地址
+Token:      代币地址(主币为"FM")
+Amount:     转账金额*1e8(1e8为小数部分，若转账1个币，则这里的amount为1*1e8=100000000)
+Fees:       手续费(最小允许的手续费为1e4，即1*1e4=10000)
+Timestamp:  时间戳(单位s)
+Nonce:      账户nonce值(每发送一次消息，nonce加1，不可重复)
+Signature:  签名结果
+PublicKey:  地址公钥
+```
+- result:
+```
+0x78d0aceafd50bb8a10c927c79a0cea04ba0818d134779b1506ea53d7a66fc7aa
+```
+
+### CreateToken
+- info：创建发币消息
+- agrs：
+```
+From:       发币地址
+Receiver:   接收地址
+Token:      创建的代币地址
+Amount:     发币金额*1e8(1e8为小数部分，若转账1个币，则这里的amount为1*1e8=100000000)
+Fees:       手续费(最小允许的手续费为1e4，即1*1e4=10000)
+Timestamp:  时间戳(单位s)
+Nonce:      账户nonce值(每发送一次消息，nonce加1，不可重复)
+Name:       代币名称
+Abbr:       代币简称
+Increase:   是否可增发
+```
+- result:
+```json
+{
+	"Header": {
+		"Type": 1,
+		"Hash": "0x4f8f09c8e2262cde9ffcd3a5cd48c8688bb5b2a39e995aff5dcf1ddb5b28ff83",
+		"From": "0x464d656a6339626a695465517a4b51473966534450476473527a7a4564455165367365",
+		"Nonce": 4,
+		"Fee": 1000000,
+		"Time": 1598258928,
+		"Signature": {
+			"bytes": null,
+			"pubkey": null
+		}
+	},
+	"Body": {
+		"TokenAddress": "0x4654676561737839666d6b45695675363978723536684339633151547634724b4d3865",
+		"Receiver": "0x464d6567756b54636f326d31533959346562584d396b567051366a7147475a42775776",
+		"Name": "12121",
+		"Shorthand": "ANBJ",
+		"IncreaseIssues": true,
+		"Amount": 1000000000000
+	}
+}
+```
+
+### SendToken
+- info：发送发币消息
+- agrs：
+```
+From:       发币地址
+Receiver:   接收地址
+Token:      创建的代币地址
+Amount:     发币金额*1e8(1e8为小数部分，若转账1个币，则这里的amount为1*1e8=100000000)
+Fees:       手续费(最小允许的手续费为1e4，即1*1e4=10000)
+Timestamp:  时间戳(单位s)
+Nonce:      账户nonce值(每发送一次消息，nonce加1，不可重复)
+Name:       代币名称
+Abbr:       代币简称
+Increase:   是否可增发
+Signature:  签名结果
+PublicKey:  地址公钥
+```
+- result:
+```
+0xb4c5741544a55dcaf3c7d82ab76de178d2678587ab748cf3b7dc4a15fbaae631
+```
+
+### CreateCandidate
+- info：创建候选人消息
+- agrs：
+```
+From:       候选人地址
+P2Pid:      候选人地址P2PId
+Fees:       手续费(最小允许的手续费为1e4，即1*1e4=10000)
+Timestamp:  时间戳(单位s)
+Nonce:      账户nonce值(每发送一次消息，nonce加1，不可重复)
+```
+- result:
+```json
+{
+	"Header": {
+		"Type": 2,
+		"Hash": "0x01a144b062f14a26b4b23356a6615a43de40673c62f8b58ba8b3a282c363c66e",
+		"From": "0x464d656a6339626a695465517a4b51473966534450476473527a7a4564455165367365",
+		"Nonce": 5,
+		"Fee": 1000000,
+		"Time": 1598259110,
+		"Signature": {
+			"bytes": null,
+			"pubkey": null
+		}
+	},
+	"Body": {
+		"Peer": [49, 54, 85, 105, 117, 50, 72, 65, 107, 119, 75, 114, 98, 109, 97, 122, 51, 87, 82, 80, 106, 100, 74, 90, 98, 69, 66, 68, 67, 106, 52, 49, 50, 97, 117, 90, 80, 111, 66, 67, 114, 51, 99, 112, 68, 86, 105, 122, 116, 122, 99, 88, 54]
+	}
+}
+```
+
+### SendCandidate
+- info：发送候选人消息
+- agrs：
+```
+From:       候选人地址
+P2Pid:      候选人地址P2PId
+Fees:       手续费(最小允许的手续费为1e4，即1*1e4=10000)
+Timestamp:  时间戳(单位s)
+Nonce:      账户nonce值(每发送一次消息，nonce加1，不可重复)
+Signature:  签名结果
+PublicKey:  地址公钥
+```
+- result:
+```
+0xb4c5741544a55dcaf3c7d82ab76de178d2678587ab748cf3b7dc4a15fbaae631
+```
+
+### CreateCancel
+- info：创建取消候选人消息
+- agrs：
+```
+From:       候选人地址
+Fees:       手续费(最小允许的手续费为1e4，即1*1e4=10000)
+Timestamp:  时间戳(单位s)
+Nonce:      账户nonce值(每发送一次消息，nonce加1，不可重复)
+```
+- result:
+```json
+{
+	"Header": {
+		"Type": 3,
+		"Hash": "0xfcae1030027fab7c434b0377b4736e73003c6d50aa5b59641e2f01ff7a461a57",
+		"From": "0x464d656a6339626a695465517a4b51473966534450476473527a7a4564455165367365",
+		"Nonce": 6,
+		"Fee": 1000000,
+		"Time": 1598259260,
+		"Signature": {
+			"bytes": null,
+			"pubkey": null
+		}
+	},
+	"Body": {}
+}
+```
+
+### SendCancel
+- info：发送取消候选人消息
+- agrs：
+```
+From:       候选人地址
+Fees:       手续费(最小允许的手续费为1e4，即1*1e4=10000)
+Timestamp:  时间戳(单位s)
+Nonce:      账户nonce值(每发送一次消息，nonce加1，不可重复)
+Signature:  签名结果
+PublicKey:  地址公钥
+```
+- result:
+```
+0xb4c5741544a55dcaf3c7d82ab76de178d2678587ab748cf3b7dc4a15fbaae631
+```
+
+### CreateVote
+- info：创建投票消息
+- agrs：
+```
+From:       投票地址
+To:         目标地址
+Fees:       手续费(最小允许的手续费为1e4，即1*1e4=10000)
+Timestamp:  时间戳(单位s)
+Nonce:      账户nonce值(每发送一次消息，nonce加1，不可重复)
+```
+- result:
+```json
+{
+	"Header": {
+		"Type": 4,
+		"Hash": "0x109d4d7739caaa0acfb18f7dd7f3636149fa66f533e67f1f3a40e8647bb4363e",
+		"From": "0x464d656a6339626a695465517a4b51473966534450476473527a7a4564455165367365",
+		"Nonce": 7,
+		"Fee": 1000000,
+		"Time": 1598259371,
+		"Signature": {
+			"bytes": null,
+			"pubkey": null
+		}
+	},
+	"Body": {
+		"To": "0x464d656a6339626a695465517a4b51473966534450476473527a7a4564455165367365"
+	}
+}
+```
+
+### SendVote
+- info：发送投票消息
+- agrs：
+```
+From:       投票地址
+To:         目标地址
+Fees:       手续费(最小允许的手续费为1e4，即1*1e4=10000)
+Timestamp:  时间戳(单位s)
+Nonce:      账户nonce值(每发送一次消息，nonce加1，不可重复)
+Signature:  签名结果
+PublicKey:  地址公钥
+```
+- result:
+```
+0xb4c5741544a55dcaf3c7d82ab76de178d2678587ab748cf3b7dc4a15fbaae631
 ```

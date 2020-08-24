@@ -3,9 +3,9 @@
 
 ### 工具包
 ```
-github.com/Futuremine-chain/futuremine/common/param
-github.com/Futuremine-chain/futuremine/futuremine/common/kit
-github.com/Futuremine-chain/futuremine/tools/arry
+github.com/Futuremine-chain/future/common/param
+github.com/Futuremine-chain/future/future/common/kit
+github.com/Futuremine-chain/future/tools/arry
 ```
 
 
@@ -25,22 +25,22 @@ key, _ := kit.MnemonicToEc(m)
 ###  生成地址
 
 ```
-addr, _ := kit.GenerateAddress(param.MainNet, key.PubKey())
+addr, _ := kit.GenerateAddress(param.MainNet, "021c39e5bae2894676b8c70d8ba25f84ef70ac59440fcd585640bda8d02646d4b5")
 ```
 
 ### 校验地址
 ```
-kit.CheckAddress(param.MainNet, arry.StringToAddress("xC9MJyXesGsyXXVfLZuq2SNXarEuGUqnaGz"))
+kit.CheckAddress(param.MainNet, "xC9MJyXesGsyXXVfLZuq2SNXarEuGUqnaGz")
 ```
 
 ### 生成token地址
 
 ```
-kit.GenerateTokenAddress(param.MainNet, arry.StringToAddress("xC9MJyXesGsyXXVfLZuq2SNXarEuGUqnaGz"), "HFC")
+kit.GenerateTokenAddress(param.MainNet, "xC9MJyXesGsyXXVfLZuq2SNXarEuGUqnaGz", "HFC")
 ```
 
 ### 校验token地址
 
 ```
-kit.CheckTokenAddress(param.MainNet, arry.StringToAddress("TfXDqmBTrmDxzJPzu9t2pBUsLqgPvo3WLZ2"))
+kit.CheckTokenAddress(param.MainNet, "TfXDqmBTrmDxzJPzu9t2pBUsLqgPvo3WLZ2")
 ```
