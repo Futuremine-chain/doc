@@ -13,9 +13,8 @@
     3.如果需要链接该引导节点，可以在配置文件的boot项中配置该引导节点的地址信息
        
         例：
-        ```
         Boot="/ip4/8.210.100.179/tcp/19100/ipfs/16Uiu2HAmCrUCC6zyvqteHnokLcBEsMVz6FsXmskLzipXMTLTVg4N"
-        ```
+      
 ### 超级节点的部署
 
     部署超级节点需要在配置文件中配置超级节点的地址的私钥文件和私钥文件的解密密码
