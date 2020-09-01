@@ -17,7 +17,7 @@
       
 ### 超级节点的部署
 
-    部署超级节点需要在配置文件中配置超级节点的地址的私钥文件和私钥文件的解密密码
+    1.部署超级节点需要在配置文件中配置超级节点的地址的私钥文件和私钥文件的解密密码
        
         例：
         # If it is a block generating node, it needs to be configured
@@ -25,4 +25,7 @@
         KeyFile = "../wallet/keystore/FMizWwybDdxE9wWtbeiukj4ixcnMGLaT5La.json"
         # Password to decrypt the private key json file
         KeyPass = "1"
+    2.使用配置文件启动
+        ./future --config config.toml
+   
         
