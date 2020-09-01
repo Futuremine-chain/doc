@@ -6,3 +6,4 @@
 - [地址](https://github.com/Futuremine-chain/docs/tree/master/address/address.md)
 - [消息](https://github.com/Futuremine-chain/docs/tree/master/message/message.md)
 - [关于分叉](https://github.com/Futuremine-chain/docs/tree/master/other/other.md)
+- [部署](https://github.com/Futuremine-chain/docs/tree/master/other/start.md)
