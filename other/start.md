@@ -25,7 +25,13 @@
         KeyFile = "../wallet/keystore/FMizWwybDdxE9wWtbeiukj4ixcnMGLaT5La.json"
         # Password to decrypt the private key json file
         KeyPass = "1"
-    2.使用配置文件启动
+    2.配置节点的外部ip（必须配置）
+        
+        例：
+        # P2P configuration
+        #Externale ip (default = "0.0.0.0")
+        ExternalIp = "1.2.3.4"
+    3.使用配置文件启动
         ./future --config config.toml
    
         
