@@ -33,5 +33,17 @@
         ExternalIp = "1.2.3.4"
     3.使用配置文件启动
         ./future --config config.toml
-   
         
+### 普通节点配置要求
+
+推荐配置：
+CPU: 2
+内存: 4G
+硬盘: 160G
+网络: 2M
+
+最低配置：
+CPU: 1 core
+内存: 2G
+硬盘:  80G
+网络: 1M
